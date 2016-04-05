@@ -54,6 +54,13 @@ class Postman {
   protected $email;
 
   /**
+   *
+   * @ORM\OneToOne(targetEntity="User")
+   * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
+   */
+  protected $user;
+
+  /**
    * Get idPostman
    *
    * @return integer
@@ -170,6 +177,28 @@ class Postman {
    */
   public function getEmail() {
     return $this->email;
+  }
+
+  /**
+   * Set user
+   *
+   * @param \AppBundle\Entity\User $user
+   *
+   * @return Postman
+   */
+  public function setUser(\AppBundle\Entity\User $user = null) {
+    $this->user = $user;
+
+    return $this;
+  }
+
+  /**
+   * Get user
+   *
+   * @return \AppBundle\Entity\User
+   */
+  public function getUser() {
+    return $this->user;
   }
 
 }
