@@ -9,3 +9,7 @@ services:
     arguments:  ["@router"]
     tags:
         - { name: 'monolog.logger', channel: 'security' }
+
+  user_form.handler:
+    class: AppBundle\Handler\UserFormHandler
+    arguments: ['@service_container']
