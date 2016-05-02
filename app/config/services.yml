@@ -10,6 +10,6 @@ services:
     tags:
         - { name: 'monolog.logger', channel: 'security' }
 
-  user_form.handler:
-    class: AppBundle\Handler\UserFormHandler
-    arguments: ['@service_container']
+  postman_form.handler:
+    class: AppBundle\Handler\PostmanFormHandler
+    arguments: ['@doctrine.orm.entity_manager', '@form.factory']

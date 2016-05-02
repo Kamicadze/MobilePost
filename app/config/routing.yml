@@ -4,8 +4,8 @@ app:
     
 app_api:
   type: rest
-  prefix: /api
-  resource: AppBundle\Controller\ApiUserController
+  prefix: /api/postman
+  resource: AppBundle\Controller\postmanController
   
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/security.xml"
