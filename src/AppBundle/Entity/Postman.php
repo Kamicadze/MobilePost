@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostmanRepository")
  * @ORM\Table(name="postman")
  */
-class Postman {
+class Postman implements PostmanInterface{
 
   /**
    * @ORM\Column(type="integer")
@@ -55,7 +55,7 @@ class Postman {
 
   /**
    *
-   * @ORM\OneToOne(targetEntity="User")
+   * @ORM\OneToOne(targetEntity="User", cascade={"persist"})
    * @ORM\JoinColumn(name="id_user", referencedColumnName="id")
    */
   protected $user;
