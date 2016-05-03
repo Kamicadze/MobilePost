@@ -32,10 +32,6 @@ interface PostmanInterface {
 
   public function getPhone();
 
-  public function setEmail($email);
-
-  public function getEmail();
-
   public function setUser(\AppBundle\Entity\User $user = null);
 
   public function getUser();

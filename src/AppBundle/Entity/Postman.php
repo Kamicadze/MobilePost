@@ -14,7 +14,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Entity(repositoryClass="AppBundle\Repository\PostmanRepository")
  * @ORM\Table(name="postman")
  */
-class Postman implements PostmanInterface{
+class Postman implements PostmanInterface {
 
   /**
    * @ORM\Column(type="integer")
@@ -46,12 +46,6 @@ class Postman implements PostmanInterface{
    * @ORM\Column(type="string", length=8)
    */
   protected $phone;
-
-  /**
-   *
-   * @ORM\Column(type="string")
-   */
-  protected $email;
 
   /**
    *
@@ -155,28 +149,6 @@ class Postman implements PostmanInterface{
    */
   public function getPhone() {
     return $this->phone;
-  }
-
-  /**
-   * Set email
-   *
-   * @param string $email
-   *
-   * @return Postman
-   */
-  public function setEmail($email) {
-    $this->email = $email;
-
-    return $this;
-  }
-
-  /**
-   * Get email
-   *
-   * @return string
-   */
-  public function getEmail() {
-    return $this->email;
   }
 
   /**
