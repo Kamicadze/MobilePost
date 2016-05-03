@@ -47,7 +47,6 @@ class PostmanType extends AbstractType {
                     new NotBlank()
                 )
             ))
-            ->add('email', TextType::class)
             ->add('user', UserType::class);
   }
 

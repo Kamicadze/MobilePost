@@ -1,0 +1,72 @@
+<form name="form" ng-submit="submit()">
+  <table>
+    <tr>
+      <td>Imie</td>
+      <td colspan=2>
+        <input type="text" name="first_name" ng-model="postman.first_name"/>
+        <span ng-show="form.$submitted && errors.first_name">{{errors.first_name}}</span>
+      </td>
+    </tr>
+    <tr>
+      <td>Nazwisko</td>
+      <td colspan=2>
+        <input type="text" ng-model="postman.last_name" />
+        <span ng-show="form.$submitted && errors.last_name">{{errors.last_name}}</span>
+      </td>
+    </tr>
+    <tr>
+      <td>City</td>
+      <td colspan=2>
+        <input type="text" ng-model="postman.city" />
+        <span ng-show="form.$submitted && errors.city">{{errors.city}}</span>
+      </td>
+      
+    </tr>
+    <tr>
+      <td>Phone</td>
+      <td colspan=2>
+        <input type="text" ng-model="postman.phone" />
+        <span ng-show="form.$submitted && errors.phone">{{errors.phone}}</span>
+      </td>
+      
+    </tr>
+    <tr>
+      <td>Nazwa użytkownika</td>
+      <td colspan=2>
+        <input type="text" ng-model="postman.user.username" />
+        <span ng-show="form.$submitted && errors.user.username">{{errors.user.username}}</span>
+      </td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td colspan=2>
+        <input type="text" ng-model="postman.user.email" />
+        <span ng-show="form.$submitted && errors.user.email">{{errors.user.email}}</span>
+      </td>
+    </tr>
+    <tr>
+      <td>Hasło</td>
+      <td colspan=2>
+        <input type="text" ng-model="postman.user.plainPassword.first" />
+        <span ng-show="form.$submitted && errors.user.plainPassword.first">{{errors.user.plainPassword.first}}</span>
+      </td>
+    </tr>
+    <tr>
+      <td>Hasło (powtórz)</td>
+      <td colspan=2>
+        <input type="text" ng-model="postman.user.plainPassword.second" />
+        <span ng-show="form.$submitted && errors.user.plainPassword.second">{{errors.user.plainPassword.second}}</span>
+      </td>
+    </tr>
+    <tr>
+      <td>Aktwny</td>
+      <td colspan=2><input type="checkbox" ng-model="postman.user.enabled" /></td>
+    </tr>
+    <tr><td height=5></td></tr>
+    <tr>
+      <td></td>
+      <td align="right"><input type="submit" id="submit" value="Save" /></td>
+      <td align="right"><input type="button" value="Cancel" ng-redirect-to="#"/></td>
+    </tr>
+  </table>
+</form>
