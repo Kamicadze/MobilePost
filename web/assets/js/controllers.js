@@ -1,38 +1,83 @@
 'use strict';
 
 var postmanControllers = angular.module('postmanControllers', []);
+var userControllers = angular.module('userControllers', []);
+var dashboardControllers = angular.module('dashboardControllers', []);
+
+dashboardControllers.controller('Dashboard', ['$scope', '$window','Authorization', 
+  function($scope, $window, Authorization){
+    $scope.authorization = false;
+    
+    Authorization.get(function(data){
+      if(data.roles != 'ROLE_ADMIN'){
+        $window.location.href = '#/login';
+      }
+      else{
+        $scope.authorization = true;
+      }
+    });
+  }
+]);
 
 postmanControllers.controller('CreatePostmanForm', ['$scope', '$window',
-  'Postman', function ($scope, $window, Postman) {
-    $scope.submit = function () {
-      Postman.save($scope.postman, function () {
-        $window.location.href = '#';
-      }, function (data, status, headers, config) {
-        //console.log(data);
-        $scope.errors = {};
-        $scope.errors.user={};
-        $scope.errors.user.plainPassword={};
+  'Postman', 'Authorization',  function ($scope, $window, Postman, Authorization) {
+    $scope.authorization = false;
+    
+    Authorization.get(function(data){
+      if(data.roles == 'ROLE_ADMIN'){
+        $scope.authorization = true;
         
-        if(data.status = 200){
+        $scope.submit = function () {
+          Postman.save($scope.postman, function () {
+            $window.location.href = '#';
+          }, function (data, status, headers, config) {
+            console.log(data);
+            $scope.errors = {};
+            $scope.errors.user={};
+            $scope.errors.user.plainPassword={};
 
-          angular.forEach(data.data.errors.children, function(value, key){
-            if(Array.isArray(value.errors)){
-              $scope.errors[key] = value.errors.join(',');
+            if(data.status == 400){
+
+              angular.forEach(data.data.errors.children, function(value, key){
+                if(Array.isArray(value.errors)){
+                  $scope.errors[key] = value.errors.join(',');
+                }
+              });
+
+              angular.forEach(data.data.errors.children.user.children, function(value, key){
+                if(Array.isArray(value.errors)){
+                  $scope.errors.user[key] = value.errors.join(',');
+                }
+              });
+               angular.forEach(data.data.errors.children.user.children.plainPassword.children, function(value, key){
+                if(Array.isArray(value.errors)){
+                  $scope.errors.user.plainPassword[key] = value.errors.join(',');
+                }
+              });
             }
           });
-          
-          angular.forEach(data.data.errors.children.user.children, function(value, key){
-            if(Array.isArray(value.errors)){
-              $scope.errors.user[key] = value.errors.join(',');
-            }
-          });
-           angular.forEach(data.data.errors.children.user.children.plainPassword.children, function(value, key){
-            if(Array.isArray(value.errors)){
-              $scope.errors.user.plainPassword[key] = value.errors.join(',');
-            }
-          });
+        };
+      }
+      else{
+        $window.location.href = '#/login';
+      }
+    });
+  }
+]);
+
+userControllers.controller('LoginUserForm', ['$scope', '$http', '$window', 'User', 
+  function ($scope, $http, $window, User) {
+    $scope.submit = function () {
+      User.login($scope.user, function(data, status, headers, config){
+          $window.location.href = '#';
+      }, function(data, status, headers, config){
+        console.log(data);
+        $scope.errors = {};
+        
+        if(data.status == 400){
+          $scope.errors = data.data.message;
         }
       });
-    };
+    }
   }
 ]);

@@ -44,3 +44,4 @@
 
 # Sessions
 /var/sessions
+/nbproject/private/

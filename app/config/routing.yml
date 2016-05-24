@@ -7,5 +7,15 @@ app_api:
   prefix: /api/postman
   resource: AppBundle\Controller\postmanController
   
-fos_user:
-    resource: "@FOSUserBundle/Resources/config/routing/security.xml"
+app_user:
+  type: rest
+  prefix: /api
+  resource: AppBundle\Controller\userController
+  
+fos_user_security_check:
+  path:     /login_check
+  defaults: { _controller: FOSUserBundle:Security:check }
+  
+fos_user_security_logout:
+  path:     /logout
+  defaults: { _controller: FOSUserBundle:Security:logout }

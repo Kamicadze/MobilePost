@@ -41,6 +41,7 @@ class AuthenticationHandler implements AuthenticationSuccessHandlerInterface, Au
       $result = array('success' => false, 'message' => $exception->getMessage());
       $response = new Response(json_encode($result));
       $response->headers->set('Content-Type', 'application/json');
+      $response->setStatusCode(Response::HTTP_BAD_REQUEST);
       return $response;
     //}
   }

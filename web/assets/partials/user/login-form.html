@@ -1,0 +1,19 @@
+<form name="login" ng-submit="submit()">
+  <div class="error" ng-show="errors">
+    <span>{{errors}}</span>
+  </div>
+  <table>
+    <tr>
+      <td>Login:</td>
+      <td><input type="text" name="_username" ng-model="user._username"></td>
+    </tr>
+    <tr>
+      <td>Hasło:</td>
+      <td><input type="password" name="_password" ng-model="user._password"></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td><input type="submit" value="Loguj"></td>
+    </tr>
+  </table>
+</form>
